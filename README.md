@@ -8,6 +8,14 @@ These mods are mostly around target code execution that allows me to run multipl
  * Added function to set active target
  * Added array to set available targets (config.h)
  * Modified spawn() function to execute on remote target if applicable.
+ * Added localSpawn() function to execute on local system regardless of target selected.
+ * Appends status text with target name with multi-monitor support.
+
+
+#### Using Local Spawn
+
+For keybindings that you want to always run on the local system, use the localSpawn() function as follows:
+<pre>{ MODKEY,   XK_n,	localSpawn,	{.v = (const char*[]){"amixer", "sset", "Master", "toggle", NULL} } },</pre>
 
 #### Thoughts
 

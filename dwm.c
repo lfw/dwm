@@ -230,6 +230,7 @@ static void setup(void);
 static void showhide(Client *c);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
+static void localSpawn(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static int textnw(const char *text, unsigned int len);
@@ -1752,6 +1753,18 @@ spawn(const Arg *arg) {
 		perror(" failed");
 		exit(EXIT_SUCCESS);
 	}
+}
+
+void
+localSpawn(const Arg *arg) {
+	if(fork() == 0) {
+		if(dpy) close(ConnectionNumber(dpy));
+		setsid();
+		execvp(((char**)arg->v)[0], (char**)arg->v);
+		fprintf(stderr, "dwm: execvp %s", ((char**)arg->v)[0]);
+		perror(" Failed");
+		exit(EXIT_SUCCESS);
+	}	
 }
 
 void
