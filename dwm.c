@@ -264,6 +264,7 @@ static int getpaddedbytes(const char **argv, int *n);
 /* variables */
 static const char broken[] = "broken";
 static char stext[256];
+static char sstext[512];
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
@@ -458,7 +459,7 @@ buttonpress(XEvent *e) {
 		}
 		else if(ev->x < x + blw)
 			click = ClkLtSymbol;
-		else if(ev->x > selmon->ww - TEXTW(stext))
+		else if(ev->x > selmon->ww - TEXTW(sstext))
 			click = ClkStatusText;
 		else
 			click = ClkWinTitle;
@@ -751,13 +752,19 @@ drawbar(Monitor *m) {
 	dc.x += dc.w;
 	x = dc.x;
 	if(m == selmon) { /* status is only drawn on selected monitor */
-		dc.w = TEXTW(stext);
+		
+		strcpy(sstext, stext);
+		strcat(sstext, " [");
+		strcat(sstext, targets[selmon->spawnTarget].host_name);
+		strcat(sstext, "]");
+
+		dc.w = TEXTW(sstext);
 		dc.x = m->ww - dc.w;
 		if(dc.x < x) {
 			dc.x = x;
 			dc.w = m->ww - x;
 		}
-		drawtext(stext, dc.norm, False);
+		drawtext(sstext, dc.norm, False);
 	}
 	else
 		dc.x = m->ww;
@@ -893,8 +900,6 @@ focusmon(const Arg *arg) {
 	unfocus(selmon->sel, True);
 	selmon = m;
 	focus(NULL);
-	strcpy(stext, targets[selmon->spawnTarget].host_name);
-	drawbar(selmon);
 }
 
 void
@@ -2209,10 +2214,6 @@ settarget(const Arg *arg) {
 	else if(selmon->spawnTarget >= maxTargets)
 		selmon->spawnTarget = 0;
 
-
-	//printf("NewTarget: %s (%i/%i)\n", targets[selmon->spawnTarget].host_name, selmon->spawnTarget, maxTargets);
-
-	strcpy(stext, targets[selmon->spawnTarget].host_name);
 	drawbar(selmon);
 }
 
