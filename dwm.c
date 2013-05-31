@@ -143,7 +143,7 @@ struct Monitor {
 	Monitor *next;
 	Window barwin;
 	const Layout *lt[2];
-  int spawnTarget;
+  	int spawnTarget;
 };
 
 typedef struct {
@@ -893,6 +893,8 @@ focusmon(const Arg *arg) {
 	unfocus(selmon->sel, True);
 	selmon = m;
 	focus(NULL);
+	strcpy(stext, targets[selmon->spawnTarget].host_name);
+	drawbar(selmon);
 }
 
 void
