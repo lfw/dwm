@@ -1,4 +1,4 @@
-## DWM 6.0_0.1Beta
+## DWM 6.0_0.1
 
 My modifications to [DWM] available at [suckless.org]. 
 These mods are mostly around target code execution that allows me to run multiple virtual systems in a headless format and use X forwarding to unify them in 1 enviroment.
