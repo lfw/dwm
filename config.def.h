@@ -38,9 +38,8 @@ static const Layout layouts[] = {
  * the command on a remote or local system */
 static const SpawnTarget targets[] = {
 	/* Host Name               Command Prefix (limit 5) */
-	{ "mccoy.lfw.local",       { NULL } },
-	{ "tuvok.lfw.local",       { "ssh", "-Y", "tuvok.lfw.local", NULL } },
-	{ "janeway.lfw.local",     { "ssh", "-Y", "janeway.lfw.local", NULL } },
+	{ "Localhost",             { NULL } },
+	{ "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL } },
 };
 
 /* key definitions */
@@ -55,7 +54,7 @@ static const SpawnTarget targets[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "/home/en0/.scripts/dmenu_show", NULL };
+static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "urxvt", NULL };
 
 static Key keys[] = {

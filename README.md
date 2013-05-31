@@ -1,11 +1,9 @@
-## DWM
+## DWM 6.0_0.1Beta
 
 My modifications to [DWM] available at [suckless.org]. 
-These mods are mostly around remote code execution that allows me to run multiple virtual systems in a headless format and use X forwarding to unify them in 1 enviroment.
+These mods are mostly around target code execution that allows me to run multiple virtual systems in a headless format and use X forwarding to unify them in 1 enviroment.
 
-note: i do have bash scripts in my config. Still working out bugs that only allow me to send 1 command to the target host. (no arguments)
-
-#### Modifications
+#### Features
 
  * Added function to set active target
  * Added array to set available targets (config.h)
