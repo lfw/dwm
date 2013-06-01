@@ -38,8 +38,8 @@ static const Layout layouts[] = {
  * the command on a remote or local system */
 static const SpawnTarget targets[] = {
 	/* Host Name               Command Prefix (limit 5) */
-	{ "Localhost",             { NULL } },
-	{ "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL } },
+	{ "Localhost",             { NULL }, "#ea7d24" },
+	{ "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL }, "#0000FF" },
 };
 
 /* key definitions */

@@ -158,6 +158,7 @@ typedef struct {
 typedef struct {
 	const char *host_name;
 	const char *prefix[5];
+	const char *selfgcolor;
 } SpawnTarget;
 
 /* function declarations */
@@ -733,6 +734,8 @@ drawbar(Monitor *m) {
 	unsigned int i, occ = 0, urg = 0;
 	unsigned long *col;
 	Client *c;
+
+	dc.sel[ColFG] = getcolor(targets[selmon->spawnTarget].selfgcolor);
 
 	for(c = m->clients; c; c = c->next) {
 		occ |= c->tags;

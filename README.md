@@ -1,7 +1,26 @@
-## DWM 6.0_1.0
+## DWM 6.0_1.1
 
 My modifications to [DWM] available at [suckless.org]. 
 These mods are mostly around target code execution that allows me to run multiple virtual systems in a headless format and use X forwarding to unify them in 1 enviroment.
+
+## NOTICE!
+
+coonfig.def.h has been modified. You MUST make the following changes to your local config.h or the application will fail to compile.
+
+<pre>
+index 102c719..7273d69 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -38,8 +38,8 @@ static const Layout layouts[] = {
+  * the command on a remote or local system */
+ static const SpawnTarget targets[] = {
+        /* Host Name               Command Prefix (limit 5) */
+-       { "Localhost",             { NULL } },
+-       { "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL } },
++       { "Localhost",             { NULL }, "#ea7d24" },
++       { "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL }, "#0000FF" },
+ };
+</pre>
 
 #### Features
 
