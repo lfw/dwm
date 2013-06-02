@@ -8,17 +8,34 @@ These mods are mostly around target code execution that allows me to run multipl
 coonfig.def.h has been modified. You MUST make the following changes to your local config.h or the application will fail to compile.
 
 <pre>
-index 102c719..7273d69 100644
+index 7273d69..e6d1591 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -38,8 +38,8 @@ static const Layout layouts[] = {
+@@ -2,12 +2,7 @@
+ 
+ /* appearance */
+ static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
+-static const char normbordercolor[] = "#522b0d";
+-static const char normbgcolor[]     = "#292929";
+-static const char normfgcolor[]     = "#666666";
+-static const char selbordercolor[]  = "#753e12";
+-static const char selbgcolor[]      = "#292929";
+-static const char selfgcolor[]      = "#ea7d24";
++/* Colors moved to SpawnTargets region */
+ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const Bool showbar           = True;     /* False means no bar */
+@@ -38,8 +33,11 @@ static const Layout layouts[] = {
   * the command on a remote or local system */
  static const SpawnTarget targets[] = {
         /* Host Name               Command Prefix (limit 5) */
 -       { "Localhost",             { NULL } },
 -       { "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL } },
-+       { "Localhost",             { NULL }, "#ea7d24" },
-+       { "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL }, "#0000FF" },
++
++        /* host_name   prefix[5]                   normbordercolor normbgcolor normfgcolor selbordercolor selbgcolor selfgcolor */
++
++       { "Localhost",  { NULL },                   "#522b0d",      "#292929",  "#666666",  "#753e12",     "#292929", "#ea7d24" },
++       { "Remote1",    { "ssh", "Remote1", NULL }, "#52000d",      "#290029",  "#660066",  "#750012",     "#290029", "#ea0024" },
  };
 </pre>
 
@@ -29,6 +46,7 @@ index 102c719..7273d69 100644
  * Modified spawn() function to execute on remote target if applicable.
  * Added localSpawn() function to execute on local system regardless of target selected.
  * Appends status text with target name with multi-monitor support.
+ * Added support for each target to have its own color schema.
 
 #### Using Local Spawn
 

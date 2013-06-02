@@ -2,12 +2,7 @@
 
 /* appearance */
 static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
-static const char normbordercolor[] = "#522b0d";
-static const char normbgcolor[]     = "#292929";
-static const char normfgcolor[]     = "#666666";
-static const char selbordercolor[]  = "#753e12";
-static const char selbgcolor[]      = "#292929";
-static const char selfgcolor[]      = "#ea7d24";
+/* Colors moved to SpawnTargets region */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
@@ -38,8 +33,11 @@ static const Layout layouts[] = {
  * the command on a remote or local system */
 static const SpawnTarget targets[] = {
 	/* Host Name               Command Prefix (limit 5) */
-	{ "Localhost",             { NULL }, "#ea7d24" },
-	{ "Remote1",               { "ssh", "-Y", "tuvok.lfw.local", NULL }, "#0000FF" },
+
+        /* host_name	prefix[5]                   normbordercolor normbgcolor normfgcolor selbordercolor selbgcolor selfgcolor */
+
+	{ "Localhost",  { NULL },                   "#522b0d",      "#292929",  "#666666",  "#753e12",     "#292929", "#ea7d24" },
+	{ "Remote1",    { "ssh", "Remote1", NULL }, "#52000d",      "#290029",  "#660066",  "#750012",     "#290029", "#ea0024" },
 };
 
 /* key definitions */

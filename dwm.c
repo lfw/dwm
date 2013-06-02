@@ -158,7 +158,12 @@ typedef struct {
 typedef struct {
 	const char *host_name;
 	const char *prefix[5];
-	const char *selfgcolor;
+  	const char *normbordercolor;
+        const char *normbgcolor;
+        const char *normfgcolor;
+        const char *selbordercolor;
+        const char *selbgcolor;
+        const char *selfgcolor;
 } SpawnTarget;
 
 /* function declarations */
@@ -735,7 +740,12 @@ drawbar(Monitor *m) {
 	unsigned long *col;
 	Client *c;
 
-	dc.sel[ColFG] = getcolor(targets[selmon->spawnTarget].selfgcolor);
+	dc.norm[ColBorder] = getcolor(targets[selmon->spawnTarget].normbordercolor);
+        dc.norm[ColBG] = getcolor(targets[selmon->spawnTarget].normbgcolor);
+        dc.norm[ColFG] = getcolor(targets[selmon->spawnTarget].normfgcolor);
+        dc.sel[ColBorder] = getcolor(targets[selmon->spawnTarget].selbordercolor);
+        dc.sel[ColBG] = getcolor(targets[selmon->spawnTarget].selbgcolor);
+        dc.sel[ColFG] = getcolor(targets[selmon->spawnTarget].selfgcolor);
 
 	for(c = m->clients; c; c = c->next) {
 		occ |= c->tags;
@@ -1633,12 +1643,12 @@ setup(void) {
 	cursor[CurResize] = XCreateFontCursor(dpy, XC_sizing);
 	cursor[CurMove] = XCreateFontCursor(dpy, XC_fleur);
 	/* init appearance */
-	dc.norm[ColBorder] = getcolor(normbordercolor);
-	dc.norm[ColBG] = getcolor(normbgcolor);
-	dc.norm[ColFG] = getcolor(normfgcolor);
-	dc.sel[ColBorder] = getcolor(selbordercolor);
-	dc.sel[ColBG] = getcolor(selbgcolor);
-	dc.sel[ColFG] = getcolor(selfgcolor);
+	dc.norm[ColBorder] = getcolor(targets[0].normbordercolor);
+	dc.norm[ColBG] = getcolor(targets[0].normbgcolor);
+	dc.norm[ColFG] = getcolor(targets[0].normfgcolor);
+	dc.sel[ColBorder] = getcolor(targets[0].selbordercolor);
+	dc.sel[ColBG] = getcolor(targets[0].selbgcolor);
+	dc.sel[ColFG] = getcolor(targets[0].selfgcolor);
 	dc.drawable = XCreatePixmap(dpy, root, DisplayWidth(dpy, screen), bh, DefaultDepth(dpy, screen));
 	dc.gc = XCreateGC(dpy, root, 0, NULL);
 	XSetLineAttributes(dpy, dc.gc, 1, LineSolid, CapButt, JoinMiter);
