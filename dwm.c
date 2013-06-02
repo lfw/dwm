@@ -740,12 +740,12 @@ drawbar(Monitor *m) {
 	unsigned long *col;
 	Client *c;
 
-	dc.norm[ColBorder] = getcolor(targets[selmon->spawnTarget].normbordercolor);
-        dc.norm[ColBG] = getcolor(targets[selmon->spawnTarget].normbgcolor);
-        dc.norm[ColFG] = getcolor(targets[selmon->spawnTarget].normfgcolor);
-        dc.sel[ColBorder] = getcolor(targets[selmon->spawnTarget].selbordercolor);
-        dc.sel[ColBG] = getcolor(targets[selmon->spawnTarget].selbgcolor);
-        dc.sel[ColFG] = getcolor(targets[selmon->spawnTarget].selfgcolor);
+	dc.norm[ColBorder] = getcolor(targets[m->spawnTarget].normbordercolor);
+        dc.norm[ColBG] = getcolor(targets[m->spawnTarget].normbgcolor);
+        dc.norm[ColFG] = getcolor(targets[m->spawnTarget].normfgcolor);
+        dc.sel[ColBorder] = getcolor(targets[m->spawnTarget].selbordercolor);
+        dc.sel[ColBG] = getcolor(targets[m->spawnTarget].selbgcolor);
+        dc.sel[ColFG] = getcolor(targets[m->spawnTarget].selfgcolor);
 
 	for(c = m->clients; c; c = c->next) {
 		occ |= c->tags;
